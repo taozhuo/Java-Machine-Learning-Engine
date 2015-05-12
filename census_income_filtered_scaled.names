@@ -1,0 +1,152 @@
+// This data was extracted from the census bureau database found at
+// http://www.census.gov/ftp/pub/DES/www/welcome.html
+// Donor: Terran Lane and Ronny Kohavi
+//        Data Mining and Visualization
+//        Silicon Graphics.
+//        e-mail: terran@ecn.purdue.edu, ronnyk@sgi.com for questions.
+//
+// The data was split into train/test in approximately 2/3, 1/3
+// proportions using MineSet's MIndUtil mineset-to-mlc.
+//
+// Prediction task is to determine the income level for the person
+// represented by the record.  Incomes have been binned at the $50K
+// level to present a binary classification problem, much like the
+// original UCI/ADULT database.  The goal field of this data, however,
+// was drawn from the "total person income" field rather than the
+// "adjusted gross income" and may, therefore, behave differently than the
+// orginal ADULT goal field.
+//
+// More information detailing the meaning of the attributes can be
+// found in http://www.bls.census.gov/cps/cpsmain.htm
+// To make use of the data descriptions at this site, the following mappings
+// to the Census Bureau's internal database column names will be needed:
+//
+// age						AAGE
+// class of worker				ACLSWKR
+// industry code					ADTIND
+// occupation code				ADTOCC
+// adjusted gross income				AGI
+// education					AHGA
+// wage per hour					AHRSPAY
+// enrolled in edu inst last wk			AHSCOL
+// marital status				AMARITL
+// major industry code				AMJIND
+// major occupation code				AMJOCC
+// mace						ARACE
+// hispanic Origin				AREORGN
+// sex						ASEX
+// member of a labor union			AUNMEM
+// reason for unemployment			AUNTYPE
+// full or part time employment stat		AWKSTAT
+// capital gains					CAPGAIN
+// capital losses				CAPLOSS
+// divdends from stocks				DIVVAL
+// federal income tax liability			FEDTAX
+// tax filer status				FILESTAT
+// region of previous residence			GRINREG
+// state of previous residence			GRINST
+// detailed household and family stat		HHDFMX
+// detailed household summary in household	HHDREL
+// instance weight				MARSUPWT
+// migration code-change in msa			MIGMTR1
+// migration code-change in reg			MIGMTR3
+// migration code-move within reg		MIGMTR4
+// live in this house 1 year ago			MIGSAME
+// migration prev res in sunbelt			MIGSUN
+// num persons worked for employer		NOEMP
+// family members under 18			PARENT
+// total person earnings				PEARNVAL
+// country of birth father			PEFNTVTY
+// country of birth mother			PEMNTVTY
+// country of birth self				PENATVTY
+// citizenship					PRCITSHP
+// total person income				PTOTVAL
+// own business or self employed			SEOTR
+// taxable income amount				TAXINC
+// fill inc questionnaire for veteran's admin	VETQVA
+// veterans benefits				VETYN
+// weeks worked in year				WKSWORK
+// 
+// Basic statistics for this data set:
+//
+// Number of instances data = 199523
+//    Duplicate or conflicting instances : 46716
+// Number of instances in test = 99762
+//    Duplicate or conflicting instances : 20936
+// Class probabilities for income-projected.test file
+// Probability for the label '- 50000' : 93.80%
+// Probability for the label '50000+' : 6.20%
+// Majority accuracy: 93.80% on value - 50000
+// Number of attributes = 40 (continuous : 7 nominal : 33)
+// Information about .data file : 
+//   91 distinct values for attribute #0 (age) continuous
+//    9 distinct values for attribute #1 (class of worker) nominal
+//   52 distinct values for attribute #2 (detailed industry recode) nominal
+//   47 distinct values for attribute #3 (detailed occupation recode) nominal
+//   17 distinct values for attribute #4 (education) nominal
+// 1240 distinct values for attribute #5 (wage per hour) continuous
+//    3 distinct values for attribute #6 (enroll in edu inst last wk) nominal
+//    7 distinct values for attribute #7 (marital stat) nominal
+//   24 distinct values for attribute #8 (major industry code) nominal
+//   15 distinct values for attribute #9 (major occupation code) nominal
+//    5 distinct values for attribute #10 (race) nominal
+//   10 distinct values for attribute #11 (hispanic origin) nominal
+//    2 distinct values for attribute #12 (sex) nominal
+//    3 distinct values for attribute #13 (member of a labor union) nominal
+//    6 distinct values for attribute #14 (reason for unemployment) nominal
+//    8 distinct values for attribute #15 (full or part time employment stat) nominal
+//  132 distinct values for attribute #16 (capital gains) continuous
+//  113 distinct values for attribute #17 (capital losses) continuous
+// 1478 distinct values for attribute #18 (dividends from stocks) continuous
+//    6 distinct values for attribute #19 (tax filer stat) nominal
+//    6 distinct values for attribute #20 (region of previous residence) nominal
+//   51 distinct values for attribute #21 (state of previous residence) nominal
+//   38 distinct values for attribute #22 (detailed household and family stat) nominal
+//    8 distinct values for attribute #23 (detailed household summary in household) nominal
+//   10 distinct values for attribute #24 (migration code-change in msa) nominal
+//    9 distinct values for attribute #25 (migration code-change in reg) nominal
+//   10 distinct values for attribute #26 (migration code-move within reg) nominal
+//    3 distinct values for attribute #27 (live in this house 1 year ago) nominal
+//    4 distinct values for attribute #28 (migration prev res in sunbelt) nominal
+//    7 distinct values for attribute #29 (num persons worked for employer) continuous
+//    5 distinct values for attribute #30 (family members under 18) nominal
+//   43 distinct values for attribute #31 (country of birth father) nominal
+//   43 distinct values for attribute #32 (country of birth mother) nominal
+//   43 distinct values for attribute #33 (country of birth self) nominal
+//    5 distinct values for attribute #34 (citizenship) nominal
+//    3 distinct values for attribute #35 (own business or self employed) nominal
+//    3 distinct values for attribute #36 (fill inc questionnaire for veteran's admin) nominal
+//    3 distinct values for attribute #37 (veterans benefits) nominal
+//   53 distinct values for attribute #38 (weeks worked in year) continuous
+//    2 distinct values for attribute #39 (year) nominal
+// 
+//
+// Error rates:
+//    C4.5       	: 4.8%
+//    C5.0		: 4.7%
+//    C5.0 rules		: 4.7%
+//    C5.0 boosting	: 4.6%
+//    Naive-Bayes	: 23.2%
+//
+// 
+// All commas and periods were changed to spaces
+// Colons were replaced with dashes.
+//
+// The instance weight indicates the number of people in the population
+// that each record represents due to stratified sampling.
+// To do real analysis and derive conclusions, this field must be used.
+// This attribute should *not* be used in the classifiers, so it is
+// set to "ignore" in this file.
+//
+age continuous -1, 1
+detailed_industry_recode discrete 0, 40, 44, 2, 43, 47, 48, 1, 11, 19, 24, 25, 32, 33, 34, 35, 36, 37, 38, 39, 4, 42, 45, 5, 15, 16, 22, 29, 31, 50, 14, 17, 18, 28, 3, 30, 41, 46, 51, 12, 13, 21, 23, 26, 6, 7, 9, 49, 27, 8, 10, 20
+detailed_occupation_recode discrete 0, 12, 31, 44, 19, 32, 10, 23, 26, 28, 29, 42, 40, 34, 14, 36, 38, 2, 20, 25, 37, 41, 27, 24, 30, 43, 33, 16, 45, 17, 35, 22, 18, 39, 3, 15, 13, 46, 8, 21, 9, 4, 6, 5, 1, 11, 7
+education discrete Children, 7th_and_8th_grade, 9th_grade, 10th_grade, High_school_graduate, 11th_grade, 12th_grade_no_diploma, 5th_or_6th_grade, Less_than_1st_grade, Bachelors_degree(BA_AB_BS), 1st_2nd_3rd_or_4th_grade, Some_college_but_no_degree, Masters_degree(MA_MS_MEng_MEd_MSW_MBA), Associates_degree-occup_/vocational, Associates_degree-academic_program, Doctorate_degree(PhD_EdD), Prof_school_degree_(MD_DDS_DVM_LLB_JD)
+sex discrete Female, Male
+dividends_from_stocks continuous -1, 1
+instance_weight continuous -1, 1
+num_persons_worked_for_employer continuous -1, 1
+citizenship discrete Native-_Born_in_the_United_States, Foreign_born-_Not_a_citizen_of_U_S_, Native-_Born_in_Puerto_Rico_or_U_S_Outlying, Native-_Born_abroad_of_American_Parent(s), Foreign_born-_U_S_citizen_by_naturalization
+own_business_or_self_employed discrete 0, 2, 1
+weeks_worked_in_year continuous -1, 1
+income output -50000, 50000+

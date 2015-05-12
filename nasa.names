@@ -1,0 +1,20 @@
+// Sample nasa.names file for CS760 Homework 0.
+
+// The wide variety of types of white space is supported in my java program..
+// Also the "output" feature can appear ANYWHERE
+// in the list (this simplifies things if we later want to predict
+// some other feature).  Finally, notice that the two output 
+// categories can be named whatever makes most sense, though
+// recall that we are limiting cs760 datasets to have only TWO output
+// categories to simplify the programming assignments.
+
+Observation-Start-Time  discrete 	Morning, Afternoon,	Evening
+Observation-Type        discrete 		MSP, MSW,  HRL, FRT,HRS, EPF
+Observation-Number      continuous 	1,    10	
+Observation-Sensor-Size output 	S,L
+Target-Center-Distance continuous  	3600,   	3800
+Solar-Distance 	continuous  226500000,233000000
+
+
+// there isn't a special "end of file" marker (nor is
+// there a special "end of line" marker)

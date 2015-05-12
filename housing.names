@@ -1,0 +1,14 @@
+CRIM     continuous  0,100
+ZN        continuous 0, 100
+INDUS     continuous 0, 100
+CHAS      output 0, 1
+NOX       continuous 0, 1
+RM        continuous 0, 10
+AGE       continuous 0, 100
+DIS       continuous 1, 20
+RAD       discrete 1, 2,3, 4, 5,6,7,8,9,10, 24
+TAX      continuous 100, 1000
+PTRATIO  continuous 0, 100
+B        continuous 0, 1000               
+LSTAT    continuous 0, 100
+MEDV     continuous 0, 100

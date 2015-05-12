@@ -1,0 +1,27 @@
+// Sample *.names file for use in CS760.
+
+// Notice the wide variety of types of white space used.
+// Also notice that the "output" feature can appear ANYWHERE
+// in the list (this simplifies things if we later want to predict
+// some other feature).  Finally, notice that the two output 
+// categories can be named whatever makes most sense, though
+
+category  output 	true, false
+attr_1   discrete     high , average , low
+attr_2  discrete     high , average , low
+attr_3   discrete     high , average , low
+attr_4  discrete    high , average , low
+attr_5   discrete    A,B,C,D,E,F,G,H,I,J
+attr_6    continuous      -30,130
+attr_7    continuous    -400,2300
+attr_8   continuous      -10,4
+// Notice output can appear ANYWHERE.
+// It should appear EXACTLY ONCE.
+// This is the feature we want to PREDICT.
+
+//weight	   continuous   0,	300
+//dog      output    dd,cc
+
+// there isnt a special "end of file" marker (nor is
+// there a special "end of line" marker)
+

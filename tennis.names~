@@ -1,0 +1,5 @@
+OUTLOOK	discrete	SUNNY, OVERCAST, RAIN
+TEMP	continuous	0, 100
+HUMID	discrete	HIGH, NORMAL
+WIND	discrete	WEAK, STRONG
+PLAY	output		NO, YES
